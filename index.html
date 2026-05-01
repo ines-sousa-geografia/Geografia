@@ -18,18 +18,19 @@
     --sidebar-w: 280px;
     --gold: #c9a84c;
   }
+  html { scroll-behavior: smooth; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: var(--texto); background: #0d1b2a; display: flex; min-height: 100vh; }
 
   /* ── SIDEBAR ── */
   #sidebar {
     width: var(--sidebar-w);
-    min-height: 100vh;
+    height: 100vh;
     background: #0a1520;
     position: fixed;
     top: 0; left: 0;
     overflow-y: auto;
-    max-height: 100vh;
+    overflow-x: hidden;
     padding-bottom: 40px;
     z-index: 100;
     border-right: 1px solid rgba(255,255,255,0.05);
@@ -4891,18 +4892,7 @@
 
   window.addEventListener('scroll', updateNav, { passive: true });
 
-  // smooth scroll
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const href = link.getAttribute('href');
-      const target = document.querySelector(href);
-      if (target) {
-        const top = target.getBoundingClientRect().top + window.scrollY - 20;
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      }
-    });
-  });
+  // smooth scroll — use native anchor navigation, CSS handles smooth scroll
 </script>
 </body>
 </html>
